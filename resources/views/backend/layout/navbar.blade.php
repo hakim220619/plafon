@@ -25,29 +25,29 @@
 
         <ul class="navbar-nav flex-row align-items-center ms-auto">
             <!-- Language -->
-            <a href="/" class="btn btn-primary" target="_blank">Live</a>
+
 
             <!--/ Language -->
 
 
             <!-- Style Switcher -->
-            <li class="nav-item me-2 me-xl-0">
+            {{-- <li class="nav-item me-2 me-xl-0">
                 <a class="nav-link style-switcher-toggle hide-arrow" href="javascript:void(0);">
                     <i class='bx bx-sm'></i>
                 </a>
-            </li>
+            </li> --}}
 
             <!-- Notification -->
             <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-1">
                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown"
                     data-bs-auto-close="outside" aria-expanded="false">
-                    <i class="bx bx-bell bx-sm"></i>
+                    <i class="bx bx-cart bx-sm"></i>
                     <span class="badge bg-danger rounded-pill badge-notifications">10</span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end py-0">
                     <li class="dropdown-menu-header border-bottom">
                         <div class="dropdown-header d-flex align-items-center py-3">
-                            <h5 class="text-body mb-0 me-auto">Notification</h5>
+                            <h5 class="text-body mb-0 me-auto">Cart</h5>
                             <a href="javascript:void(0)" class="dropdown-notifications-all text-body"
                                 data-bs-toggle="tooltip" data-bs-placement="top" title="Mark all as read"><i
                                     class="bx fs-4 bx-envelope-open"></i></a>
@@ -103,7 +103,7 @@
                     <li class="dropdown-menu-footer border-top">
                         <a href="javascript:void(0);"
                             class="dropdown-item d-flex justify-content-center text-primary p-2 h-px-40">
-                            View all notifications
+                            View all Cart
                         </a>
                     </li>
                 </ul>
