@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BarangController;
 use App\Http\Controllers\DashboardController;
 
 /*
@@ -25,6 +26,9 @@ Route::post('login', [AuthController::class, 'login_action'])->name('login.actio
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+    //barang
+    Route::get('/barang', [BarangController::class, 'index'])->name('barang');
+    Route::get('/barang/add', [BarangController::class, 'add'])->name('barang.add');
 });
 
 Route::get('/route-cache', function () {

@@ -50,7 +50,7 @@
                             <h5 class="text-body mb-0 me-auto">Cart</h5>
                             <a href="javascript:void(0)" class="dropdown-notifications-all text-body"
                                 data-bs-toggle="tooltip" data-bs-placement="top" title="Mark all as read"><i
-                                    class="bx fs-4 bx-envelope-open"></i></a>
+                                    class="bx fs-4 bx bx-cart bx-sm"></i></a>
                         </div>
                     </li>
                     <li class="dropdown-notifications-list scrollable-container">

@@ -22,24 +22,24 @@
                     <div>Dashboards</div>
                 </a>
             </li>
-            {{-- <li class="menu-item ">
+            <li class="menu-item ">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-book"></i>
                     <div>Master data</div>
                 </a>
                 <ul class="menu-sub">
                     <li class="menu-item ">
-                        <a href="/category" class="menu-link">
-                            <div>Category</div>
+                        <a href="/barang" class="menu-link">
+                            <div>Barang</div>
                         </a>
                     </li>
-                    <li class="menu-item ">
+                    {{-- <li class="menu-item ">
                         <a href="/users" class="menu-link">
                             <div>Users</div>
                         </a>
-                    </li>
+                    </li> --}}
                 </ul>
-            </li> --}}
+            </li>
 
             <li class="menu-item ">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
