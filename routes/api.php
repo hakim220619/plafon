@@ -22,7 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/login', [ApiAuthController::class, 'login']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
-    Route::get('/logout', [AuthController::class, 'logout']);
+    Route::get('/logout', [ApiAuthController::class, 'logout']);
 
     //barang
     Route::get('/barang', [ApiAllController::class, 'barang']);
