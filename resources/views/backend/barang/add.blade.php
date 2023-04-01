@@ -8,7 +8,7 @@
                     <h5 class="mb-0" style="font-size: 40px">{{ $title }}</h5>
                 </div>
                 <div class="card-body">
-                    <form action="/proses_addPosts" method="POST" enctype="multipart/form-data">
+                    <form action="/addBarang" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-md-6">
@@ -35,13 +35,7 @@
                                     </select>
                                 </div>
                             </div> --}}
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label" for="keyword">Image</label>
-                                    <input type="file" class="form-control" id="image" name="image"
-                                        placeholder="Thumbnail" />
-                                </div>
-                            </div>
+
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="jenis">Jenis</label>
@@ -51,15 +45,43 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
+                                    <label class="form-label" for="harga">Harga</label>
+                                    <input type="text" class="form-control" id="harga" name="harga"
+                                        placeholder="Masukan Harga" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="ukuran">Ukuran</label>
+                                    <input type="text" class="form-control" id="ukuran" name="ukuran"
+                                        placeholder="Masukan Ukuran" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
                                     <label class="form-label" for="stok">Stok</label>
-                                    <input type="text" class="form-control" id="stok" name="stok"
-                                        placeholder="Masukan Jenis" />
+                                    <input type="number" class="form-control" id="stok" name="stok"
+                                        placeholder="Masukan Jenis"
+                                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="keyword">Image</label>
+                                    <input type="file" class="form-control" id="image" name="image"
+                                        placeholder="Thumbnail" />
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <textarea name="content" id="editor1" cols="30" rows="10"></textarea>
+                                <textarea name="deskripsi" id="editor1" cols="30" rows="10"></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary">Send</button>
+
+                            <div class="col-md-12">
+                                <br>
+                                <button type="submit" class="btn btn-primary">Tambah</button>
+                                <a href="/barang" type="button" class="btn btn-success">Kembali</a>
+                            </div>
+
                     </form>
                 </div>
             </div>
@@ -80,5 +102,30 @@
             removeButtons: 'PasteFromWord'
 
         });
+
+        var rupiah = document.getElementById("harga");
+        rupiah.addEventListener("keyup", function(e) {
+            // tambahkan 'Rp.' pada saat form di ketik
+            // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+            rupiah.value = formatRupiah(this.value, "Rp. ");
+        });
+
+        /* Fungsi formatRupiah */
+        function formatRupiah(angka, prefix) {
+            var number_string = angka.replace(/[^,\d]/g, "").toString(),
+                split = number_string.split(","),
+                sisa = split[0].length % 3,
+                rupiah = split[0].substr(0, sisa),
+                ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+            // tambahkan titik jika yang di input sudah menjadi angka ribuan
+            if (ribuan) {
+                separator = sisa ? "." : "";
+                rupiah += separator + ribuan.join(".");
+            }
+
+            rupiah = split[1] != undefined ? rupiah + "," + split[1] : rupiah;
+            return prefix == undefined ? rupiah : rupiah ? "Rp. " + rupiah : "";
+        }
     </script>
 @endsection

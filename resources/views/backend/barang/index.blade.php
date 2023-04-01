@@ -9,10 +9,6 @@
             <a href="/barang/add" type="button" class="btn rounded-pill btn-primary justify-content-end"
                 style="margin-left: 70%;">Add</a>
         </div>
-
-
-
-
         <div class="container mt-4 ">
             <table id="datatable" class="table table-striped ">
                 <thead>
@@ -24,6 +20,7 @@
                         <th>Jenis</th>
                         <th>Harga</th>
                         <th>Gambar</th>
+                        <th>Dibuat</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -38,10 +35,10 @@
                             <td width="auto">{{ $a->stok }}</td>
                             <td width="auto">{{ $a->ukuran }}</td>
                             <td width="auto">{{ $a->jenis }}</td>
-                            <td width="auto">{{ $a->harga }}</td>
+                            <td width="auto">Rp. {{ number_format($a->harga) }}</td>
                             <td style="width:
                                     auto"><img
-                                    src="{{ asset('storage/images/posts/' . $a->image . '') }}" alt=""
+                                    src="{{ asset('storage/images/barang/' . $a->image . '') }}" alt=""
                                     style="width: 55px;height: 45px;"></td>
                             <td style="width:
                                     auto">{{ $a->created_at }}</td>
@@ -69,7 +66,7 @@
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">Close</button>
-                                                <a href="{{ url('proses_delPosts', $a->id) }} "
+                                                <a href="{{ url('deleteBarang', $a->id) }} "
                                                     class="btn btn-primary">Hapus</a>
                                             </div>
                                         </div>

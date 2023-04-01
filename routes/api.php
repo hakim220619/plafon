@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\api\ApiAllController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\ApiAuthController;
@@ -19,3 +20,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::post('/login', [ApiAuthController::class, 'login']);
+
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('/logout', [AuthController::class, 'logout']);
+
+    //barang
+    Route::get('/barang', [ApiAllController::class, 'barang']);
+});

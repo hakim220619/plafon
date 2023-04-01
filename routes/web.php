@@ -29,6 +29,8 @@ Route::middleware(['auth'])->group(function () {
     //barang
     Route::get('/barang', [BarangController::class, 'index'])->name('barang');
     Route::get('/barang/add', [BarangController::class, 'add'])->name('barang.add');
+    Route::post('/addBarang', [BarangController::class, 'addBarang'])->name('barang.addBarang');
+    Route::get('/deleteBarang/{id}', [BarangController::class, 'deleteBarang'])->name('barang.deleteBarang');
 });
 
 Route::get('/route-cache', function () {
