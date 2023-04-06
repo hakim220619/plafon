@@ -12,4 +12,9 @@ class DashboardController extends Controller
         $data['barang'] = DB::select('select * from barang');
         return view('backend.dashboard.index', $data);
     }
+    public function detailBarang($id)
+    {
+        $data['barang'] = DB::table('barang')->where('id', $id)->first();
+        return view('backend.dashboard.detailBarang', $data);
+    }
 }

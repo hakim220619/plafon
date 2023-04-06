@@ -23,6 +23,12 @@ class BarangController extends Controller
         $data['title'] = "Tambah Barang";
         return view('backend.barang.add', $data);
     }
+    public function edit($id)
+    {
+        $data['title'] = "Edit Barang";
+        $data['barang'] = DB::table('barang')->where('id', $id)->first();
+        return view('backend.barang.edit', $data);
+    }
     public function addBarang(Request $request)
     {
         try {
@@ -37,7 +43,6 @@ class BarangController extends Controller
                     'ukuran' => $request->ukuran,
                     'deskripsi' => $request->deskripsi,
                     'slug' => Str::slug($request->title, '-'),
-                    'active' => 1,
                     'created_at' => now(),
                 ];
             } else {
@@ -63,6 +68,53 @@ class BarangController extends Controller
             // dd($save);
             $data['barang'] = DB::table('barang')->insert($save);
             Alert::success('Barang berhasil ditambah');
+            return redirect()->route('barang', $data);
+        } catch (Exception $e) {
+            return response([
+                'success' => false,
+                'msg'     => 'Error : ' . $e->getMessage() . ' Line : ' . $e->getLine() . ' File : ' . $e->getFile()
+            ]);
+        }
+    }
+    public function editBarang(Request $request)
+    {
+        try {
+            $id = $request->id;
+            if ($request->has('image') == null) {
+                $save = [
+                    'nama_barang' => $request->nama_barang,
+                    'user_id' => Auth::user()->id,
+                    'jenis' => $request->jenis,
+                    'stok' => $request->stok,
+                    'harga' => preg_replace('/[Rp. ]/', '', $request->harga),
+                    'ukuran' => $request->ukuran,
+                    'deskripsi' => $request->deskripsi,
+                    'slug' => Str::slug($request->title, '-'),
+                    'updated_at' => now(),
+                ];
+            } else {
+                $file_path = public_path() . '/storage/images/barang/' . $request->image;
+                File::delete($file_path);
+                $image = $request->file('image');
+                $filename = $image->getClientOriginalName();
+                $image->move(public_path('storage/images/barang'), $filename);
+                $save = [
+                    'nama_barang' => $request->nama_barang,
+                    'user_id' => Auth::user()->id,
+                    'jenis' => $request->jenis,
+                    'stok' => $request->stok,
+                    'harga' => preg_replace('/[Rp. ]/', '', $request->harga),
+                    'ukuran' => $request->ukuran,
+                    'deskripsi' => $request->deskripsi,
+                    'slug' => Str::slug($request->title, '-'),
+                    'updated_at' => now(),
+                    'image' => $request->file('image')->getClientOriginalName(),
+
+                ];
+            }
+            // dd($save);
+            $data['barang'] = DB::table('barang')->where('id', $id)->update($save);
+            Alert::success('Barang berhasil diedit');
             return redirect()->route('barang', $data);
         } catch (Exception $e) {
             return response([

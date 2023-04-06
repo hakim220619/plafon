@@ -8,14 +8,15 @@
                     <h5 class="mb-0" style="font-size: 40px">{{ $title }}</h5>
                 </div>
                 <div class="card-body">
-                    <form action="/addBarang" method="POST" enctype="multipart/form-data">
+                    <form action="/editBarang" method="POST" enctype="multipart/form-data">
                         @csrf
+                        <input type="text" name="id" value="{{ $barang->id }}" hidden>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="nama_barang">Nama Barang</label>
                                     <input type="text" class="form-control" id="nama_barang" name="nama_barang"
-                                        placeholder="Masukan Nama Barang" />
+                                        placeholder="Masukan Nama Barang" value="{{ $barang->nama_barang }}" />
                                 </div>
                             </div>
 
@@ -40,21 +41,21 @@
                                 <div class="mb-3">
                                     <label class="form-label" for="jenis">Jenis</label>
                                     <input type="text" class="form-control" id="jenis" name="jenis"
-                                        placeholder="Masukan Jenis" />
+                                        placeholder="Masukan Jenis" value="{{ $barang->jenis }}" />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="harga">Harga</label>
                                     <input type="text" class="form-control" id="harga" name="harga"
-                                        placeholder="Masukan Harga" />
+                                        placeholder="Masukan Harga" value="{{ $barang->harga }}" />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="ukuran">Ukuran</label>
                                     <input type="text" class="form-control" id="ukuran" name="ukuran"
-                                        placeholder="Masukan Ukuran" />
+                                        placeholder="Masukan Ukuran" value="{{ $barang->ukuran }}" />
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -62,7 +63,8 @@
                                     <label class="form-label" for="stok">Stok</label>
                                     <input type="number" class="form-control" id="stok" name="stok"
                                         placeholder="Masukan Jenis"
-                                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" />
+                                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                                        value="{{ $barang->stok }}" />
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -73,12 +75,12 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <textarea name="deskripsi" id="editor1" cols="30" rows="10"></textarea>
+                                <textarea name="deskripsi" id="editor1" cols="30" rows="10">{{ $barang->deskripsi }}</textarea>
                             </div>
 
                             <div class="col-md-12">
                                 <br>
-                                <button type="submit" class="btn btn-primary">Tambah</button>
+                                <button type="submit" class="btn btn-primary">Edit</button>
                                 <a href="/barang" type="button" class="btn btn-success">Kembali</a>
                             </div>
                     </form>

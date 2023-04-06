@@ -29,8 +29,12 @@ Route::middleware(['auth'])->group(function () {
     //barang
     Route::get('/barang', [BarangController::class, 'index'])->name('barang');
     Route::get('/barang/add', [BarangController::class, 'add'])->name('barang.add');
+    Route::get('/barang/edit/{id}', [BarangController::class, 'edit'])->name('barang.edit');
     Route::post('/addBarang', [BarangController::class, 'addBarang'])->name('barang.addBarang');
+    Route::post('/editBarang', [BarangController::class, 'editBarang'])->name('barang.editBarang');
     Route::get('/deleteBarang/{id}', [BarangController::class, 'deleteBarang'])->name('barang.deleteBarang');
+    //detail dashboard
+    Route::get('/detailBarang/{id}', [DashboardController::class, 'detailBarang'])->name('barang.detailBarang');
 });
 
 Route::get('/route-cache', function () {
